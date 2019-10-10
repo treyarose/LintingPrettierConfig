@@ -1,0 +1,52 @@
+<apex:page docType="html-5.0" title="My Business Card" controller="sendEmail">
+    <script type="text/javascript" src="/canvas/sdk/js/publisher.js"></script>
+    <script type="text/javascript">
+        //When the panel is displayed, enable the submit button
+        Sfdc.canvas.publisher.subscribe({name: "publisher.showPanel",
+            onData:function(e){
+                Sfdc.canvas.publisher.publish(
+                    {name: "publisher.setValidForSubmit", payload: "true"});
+        }});
+    
+        //When the submit button is pressed, create an account, and close the panel
+        Sfdc.canvas.publisher.subscribe({ name: "publisher.post", onData: function(e)
+        {
+            //Create the account using the Remote Object
+            var body = document.getElementById("body").innerHTML;
+            console.log(body);
+            var email = document.getElementById("email").value;
+            console.log(email);
+            Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.sendEmail.sendTheEmail}',
+                body, email,
+                handleResult,
+                {escape: true}
+            );                                       
+        }});   
+
+        function handleResult(result, event){
+            if(event.status) {
+                document.getElementById("result").innerHTML = "success";
+            } else {
+                document.getElementById("result").innerHTML = event.type +
+                    "<br/>\n<pre>" + 
+                    event.message + 
+                    "<br/>\n<pre>" + 
+                    event.where;
+            }    
+        }
+    </script>    
+    <div class="bcard" id="body">
+        Name: {!$User.FirstName} {!$User.LastName}
+        Title: {!$User.Title}
+        Email: {!$User.Email}
+        Phone: {!$User.Phone}
+    </div>
+    
+    <div class="bemail">
+        Enter Email: <input type="text" id="email"/>     
+    </div>
+    
+    <div id="result">
+    </div>
+    
+</apex:page>

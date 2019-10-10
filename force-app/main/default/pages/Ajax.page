@@ -1,0 +1,30 @@
+<apex:page controller="AjaxWildcardController" action="{!actionLoadMethod}">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"/>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+
+
+
+  <apex:form >
+      <apex:pageBlock >
+        Search for Task Item:
+        <apex:inputText value="{!inputtext}" >
+          <apex:actionSupport action="{!actionSupMethod}" event="onkeydown" reRender="outptText" />
+        </apex:inputtext>
+
+      </apex:pageBlock>
+
+    <apex:pageblock >
+      <apex:pageblocktable value="{!taskList}" var="t" id="outptText" headerClass="header"  columnsWidth="10%,60%,10%,10%,10%">
+        <apex:column headerValue="Subject">
+          <apex:outputLink value="https://na9.salesforce.com/{!t.Id}" target="_blank">{!t.Subject}</apex:outputLink>
+        </apex:column>
+        <apex:column value="{!t.description}"/>
+        <apex:column value="{!t.WhatId}"/>
+        <apex:column styleClass="header" value="{!t.CreatedDate}" />
+        <apex:column styleClass="header" value="{!t.LastModifiedDate}"/>
+      </apex:pageblocktable>
+    </apex:pageblock>
+   <!-- <apex:actionFunction name="sayHello" action="{!actionLoadMethod}" rerender="outptText" status="myStatus"/>-->
+  </apex:form>
+</apex:page>

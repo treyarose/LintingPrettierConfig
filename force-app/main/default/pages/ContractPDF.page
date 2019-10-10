@@ -1,0 +1,4 @@
+<apex:page renderAs="pdf" standardcontroller="Contract">
+    <apex:detail relatedList="true"/>
+    <!--<apex:relatedList list="Customers__r"/>-->
+</apex:page>
