@@ -6,6 +6,9 @@ export default class HelloWorld extends LightningElement {
   }
 
   handleLint() {
-    console.log("working");
+    //uncomment to test lint and prettier working:
+    //   if(true){
+    //   }
+    //   var help;
   }
 }
