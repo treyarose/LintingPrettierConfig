@@ -1,0 +1,23 @@
+{
+  "name": "trey-dev-org",
+  "version": "1.0.0",
+  "description": "## Dev, Build and Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npm run lint:lwc",
+    "lint:lwc": "eslint force-app/main/default/lwc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://treyarose@dev.azure.com/treyarose/Treys%20Org/_git/Trey%20Dev%20Org"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@salesforce/eslint-config-lwc": "0.4.0",
+    "prettier": "2.3.2",
+    "prettier-plugin-apex": "1.10.0",
+    "eslint": "^5.16.0"
+  }
+}
