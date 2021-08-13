@@ -1,9 +1,2 @@
 # SFDX App
-
-## Dev, Build and Test
-
-## Resources
-
-## Description of Files and Directories
-
-## Issues
+Generic configuration of ESLint and Prettier for future reference
